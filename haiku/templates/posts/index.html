@@ -10,7 +10,22 @@
 
 
 {% block main %}
-<h2> Последние обновления на сайте </h2>
+<div class="container py-5">
+<h3> Последние обновления на сайте </h3>
+{% for post in posts %}
+  <ul>
+    <li>
+      Автор: {{ post.author.get_full_name }}
+    </li>
+    <li>
+      Дата публикации: {{ post.pub_date|date:"d E Y" }}
+    </li>
+  </ul>
+  <p>{{ post.text|linebreaksbr }}</p>    
+
+  {% if not forloop.last %}<hr>{% endif %}
+{% endfor %} 
+</div>
 {% comment %}
 
 <div class="container py-5">
